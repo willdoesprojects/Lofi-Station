@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta charset="utf-8" />
+        <title>Listner's Page</title>
+        <link href='https://fonts.googleapis.com/css?family=Assistant' rel='stylesheet'>
+        <link rel="stylesheet" href="css/preferences.css">
+        
+    </head>
+    <body style = "background-color: #352F2F; margin: 0; padding: 0; font-family: Assistant; color: white; position: fixed;">
+        <header>
+            <nav>
+                <ul style = "margin-left: 10px;  margin-top: 5px; margin-right: 10px; padding: 0;  display: flex; list-style: none; justify-content: space-between; align-items: center;">
+                    <li><a href = "./"><img src = "icons/reply.png" alt = "back-button"></a></li>
+                    <li style="color: white; font-size: 40px;">Preferences</li>
+                    <li><a href="#" style="color: white; font-size: 30px; text-decoration: none;"><%= username %></a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <div class="modal-container">
+            <div class="modal-edit hidden">
+                <div class="modal-header">
+                    <h2>New Fun Playlist</h2>
+                    <button class="btn-close"><img src="icons/x.png" alt="close out"></button>
+                </div>
+                
+                <div class="upload-image-search">
+                    <input type="file" id="file" style="display:none;" />
+                    <button class="upload-btn" name="upload-btn" value="Upload" onclick="thisFileUpload();">
+                        <img src="icons/upload.png" alt="upload button">
+                    </button>
+                    <input required type="text" placeholder="Enter your fun playlist name!" name="playlist-name"/>
+                </div>
+
+                <div class="save-btn">
+                    <button class="btn-save">Save</button>
+                </div>
+
+            </div>
+            <div class="overlay hidden"></div>
+        </div>
+
+        <aside>
+            <section class="library-header">
+                <h2>Your Library</h2>
+                <button class="add-playlist">
+                    <img src = "icons/plus.png" alt="add playlist">
+                </button>
+            </section>
+
+            <section class="display-playlist" id="display-playlist">
+                <article>
+                    <div class="user-playlist">
+                        <img src="images/profile_pic.jpg" />
+                        <p>Road Trip 2023</p>
+                    </div>
+
+                    <button class="remove-playlist">
+                        <img class="minus-pic" src="icons/minus.png" alt="remove playlist" />
+                    </button>
+                </article>
+                
+
+            </section>
+        </aside>
+
+        <main>
+            <section class="current-playlist" id="current-playlist">
+                <article class="playlist-container">
+                    <table>
+                        <tr>
+                          <th>#</th>
+                          <th>Title</th>
+                          <th>Album</th>
+                          <th>Date Added</th>
+                          <th>Duration</th>
+                          <th class="test"></th>
+                        </tr>
+
+                        <tr class="song-row">
+                          <td>1</td>
+                          <td>
+                            <div class="title-container">
+                                <img src="images/onyourown.jpg"/>
+                                <div class="title-artist-names">
+                                    <h4>Minute</h4>
+                                    <small>NAV, Metro Boomin, Playboi Carti, Offset</small>
+                                </div>
+                            </div>
+                          </td>
+                          <td>Perfect Timing</td>
+                          <td>Nov 1, 2017</td>
+                          <td>4:25</td>
+                          <td><button class="remove-song">
+                            <img class="minus-pic" src="icons/minus.png" alt="remove song" />
+                        </button></td>
+                        </tr>
+                        
+                
+                      </table>
+                </article>
+            </section>
+            
+            <section class="search-region">
+                <div class="search-container">
+                    <article class="sect-2">
+                        <input type="search" id="searchInput" placeholder="Search Song or DJ" onkeyup="search_bar()">
+                    </article>
+                    
+                    <article class="search-results">
+                        <div class="song-container">
+                            <div class="song-content">
+                                <img src="images/onyourown.jpg"/>
+                                <p class="song-title">On Your Own</p>
+                                <p class="artist-title">Vacations</p>
+                            </div>
+                            <div class="button-container">
+                                <button class="add-song">
+                                    <img src = "icons/plus.png" alt = "add playlist">
+                                </button>
+                                <button class="play-song">
+                                    <img src = "icons/play.png" alt = "play song">
+                                </button>
+                            </div>  
+                        </div>
+                        
+                    </article>
+                </div>
+                
+            </section>
+
+            
+            <script src="js/preferences_script.js"></script>
+        </main>
+    </body>
+
+
+</html>
