@@ -10,7 +10,6 @@ const signUpHandler = async (req, res) => {
     });
 
     await user.save();
-    await listener.save();
 
     req.session.userId = user._id;
     req.session.isAuth = true;

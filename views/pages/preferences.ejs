@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="css/preferences.css">
         
     </head>
-    <body style = "background-color: #352F2F; margin: 0; padding: 0; font-family: Assistant; color: white; position: fixed;">
+    <body style = "background-color: #352F2F; margin: 0; padding: 0; font-family: Assistant; color: white; position: relative;">
         <header>
             <nav>
                 <ul style = "margin-left: 10px;  margin-top: 5px; margin-right: 10px; padding: 0;  display: flex; list-style: none; justify-content: space-between; align-items: center;">
@@ -24,18 +24,20 @@
                     <h2>New Fun Playlist</h2>
                     <button class="btn-close"><img src="icons/x.png" alt="close out"></button>
                 </div>
+                <form action="/addplaylist" method="POST">
+                    <div class="upload-image-search">
+                        <!-- <input type="file" id="file" style="display:none;" />
+                        <button class="upload-btn" name="upload-btn" value="Upload" onclick="thisFileUpload();">
+                            <img src="icons/upload.png" alt="upload button">
+                        </button> -->
+                        <input required type="text" placeholder="Enter your fun playlist name!" name="name"/>
+                    </div>
+    
+                    <div class="save-btn">
+                        <button class="btn-save">Save</button>
+                    </div>
+                </form>
                 
-                <div class="upload-image-search">
-                    <input type="file" id="file" style="display:none;" />
-                    <button class="upload-btn" name="upload-btn" value="Upload" onclick="thisFileUpload();">
-                        <img src="icons/upload.png" alt="upload button">
-                    </button>
-                    <input required type="text" placeholder="Enter your fun playlist name!" name="playlist-name"/>
-                </div>
-
-                <div class="save-btn">
-                    <button class="btn-save">Save</button>
-                </div>
 
             </div>
             <div class="overlay hidden"></div>
@@ -61,7 +63,6 @@
                     </button>
                 </article>
                 
-
             </section>
         </aside>
 
@@ -124,7 +125,6 @@
                                 </button>
                             </div>  
                         </div>
-                        
                     </article>
                 </div>
                 

@@ -17,21 +17,21 @@ const totalDurr = document.getElementById('total-duration');
 let isPlaying = false;
 let index_val = 0;
 
-songQueue = [];
+songQueue = null;
 DJList = [];
 
-async function fetchQueue() {
-    const response = await fetch("/getsongqueue");
-    const data = await response.json();
-    return data;
-}
+// async function fetchQueue() {
+//     const response = await fetch("/getsongqueue");
+//     const data = await response.json();
+//     return data;
+// }
 
-fetchQueue().then((data) => {    
-    songQueue = data.queuedSongs;
-    index_val = data.index;
-    loadSong();
+// fetchQueue().then((data) => {    
+//     songQueue = data.queuedSongs;
+//     index_val = data.index;
+//     loadSong();
     
-})
+// })
 
 
 function loadSong() {

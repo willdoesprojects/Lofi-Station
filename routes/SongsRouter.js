@@ -2,20 +2,14 @@ const express = require("express");
 const router = express.Router();
 const songsController = require("../controllers/songsController");
 
-router.get("/getfavoritesongs", songsController.favSongsListHandler);
-
-router.post("/addsongtofavorites", songsController.addFavSongHandler);
-
-router.post("/removefavoritesong", songsController.removeFavSongHandler);
-
 router.get("/songslist", songsController.getSongs);
 
-router.post("/setqueue", songsController.setQueueHandler);
+router.post("/addplaylist", songsController.createPlaylistHandler);
 
-router.post("/djaddqueue", songsController.addDJQueueHandler);
+router.get("/getplaylists", songsController.getPlaylistsHandler);
 
-router.post("/removedj", songsController.removeDJHandler);
+router.post("/setcurrplaylist", songsController.setCurrPlaylistHandler);
 
-router.get("/getdjs", songsController.DJRetrieveHandler);
+router.post("/addsong", songsController.addSongHandler);
 
 module.exports = router;

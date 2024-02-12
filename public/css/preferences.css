@@ -85,7 +85,13 @@ main {
     border-radius: 10px;
     margin: 1em;
     margin-top: 5em;
+    height: 23vh;
+    width: 7.5vw;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-overflow: ellipsis;
 }
 
 .search-results {
@@ -148,6 +154,7 @@ main {
 .song-content {
     padding: 1em;
 }
+
 
 .song-container::before {
     content: '';
@@ -274,13 +281,14 @@ main {
 }
 
 aside {
-    background-color: #2C1919; /* Adjust color as needed */
+    background-color: #2C1919; 
     margin: .5em;
     border-radius: 20px;
-    width: 350px; /* Adjust width as needed */
+    width: 350px; 
     height: 92vh;
-    overflow-y: auto; /* For scrolling if playlists exceed the viewport height */
-    position: fixed; /* To make the playlist sidebar stay in place when scrolling */
+    overflow-y: auto; 
+    position: fixed; 
+    
 }
 
 aside h2 {
@@ -381,7 +389,6 @@ aside h2 {
     border: none;
     background: none;
     cursor: pointer;
-    
     
 }
 
