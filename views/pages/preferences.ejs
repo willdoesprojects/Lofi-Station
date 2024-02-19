@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="css/preferences.css">
         
     </head>
-    <body style = "background-color: #352F2F; margin: 0; padding: 0; font-family: Assistant; color: white; position: relative;">
+    <body style = "background-color: #352F2F; margin: 0; padding: 0; font-family: Assistant; color: white; position: relative; overflow: hidden;">
         <header>
             <nav>
                 <ul style = "margin-left: 10px;  margin-top: 5px; margin-right: 10px; padding: 0;  display: flex; list-style: none; justify-content: space-between; align-items: center;">
@@ -52,7 +52,7 @@
             </section>
 
             <section class="display-playlist" id="display-playlist">
-                <article>
+                <!-- <article>
                     <div class="user-playlist">
                         <img src="images/profile_pic.jpg" />
                         <p>Road Trip 2023</p>
@@ -61,7 +61,7 @@
                     <button class="remove-playlist">
                         <img class="minus-pic" src="icons/minus.png" alt="remove playlist" />
                     </button>
-                </article>
+                </article> -->
                 
             </section>
         </aside>
@@ -69,7 +69,7 @@
         <main>
             <section class="current-playlist" id="current-playlist">
                 <article class="playlist-container">
-                    <table>
+                    <table class="song-table" id="song-table">
                         <tr>
                           <th>#</th>
                           <th>Title</th>
@@ -78,26 +78,29 @@
                           <th>Duration</th>
                           <th class="test"></th>
                         </tr>
-
-                        <tr class="song-row">
-                          <td>1</td>
-                          <td>
-                            <div class="title-container">
-                                <img src="images/onyourown.jpg"/>
-                                <div class="title-artist-names">
-                                    <h4>Minute</h4>
-                                    <small>NAV, Metro Boomin, Playboi Carti, Offset</small>
-                                </div>
-                            </div>
-                          </td>
-                          <td>Perfect Timing</td>
-                          <td>Nov 1, 2017</td>
-                          <td>4:25</td>
-                          <td><button class="remove-song">
-                            <img class="minus-pic" src="icons/minus.png" alt="remove song" />
-                        </button></td>
-                        </tr>
                         
+                        <!-- <tr class="song-row">
+                            <td>1</td>
+                            <td>
+                                <div class="title-container">
+                                    <img src="images/onyourown.jpg"/>
+                                    <div class="title-artist-names">
+                                        <h4>Minute</h4>
+                                        <small>NAV, Metro Boomin, Playboi Carti, Offset</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Perfect Timing</td>
+                            <td>Nov 1, 2017</td>
+                            <td>4:25</td>
+                            <td><button class="remove-song">
+                                <img class="minus-pic" src="icons/minus.png" alt="remove song" />
+                            </button></td>
+                        </tr> -->
+                       
+                        
+                        
+        
                 
                       </table>
                 </article>
@@ -106,25 +109,11 @@
             <section class="search-region">
                 <div class="search-container">
                     <article class="sect-2">
-                        <input type="search" id="searchInput" placeholder="Search Song or DJ" onkeyup="search_bar()">
+                        <input type="search" id="searchInput" placeholder="Search a Song" onkeyup="search_bar()">
                     </article>
                     
                     <article class="search-results">
-                        <div class="song-container">
-                            <div class="song-content">
-                                <img src="images/onyourown.jpg"/>
-                                <p class="song-title">On Your Own</p>
-                                <p class="artist-title">Vacations</p>
-                            </div>
-                            <div class="button-container">
-                                <button class="add-song">
-                                    <img src = "icons/plus.png" alt = "add playlist">
-                                </button>
-                                <button class="play-song">
-                                    <img src = "icons/play.png" alt = "play song">
-                                </button>
-                            </div>  
-                        </div>
+                        <h1>Begin your adventure by a song.</h1>
                     </article>
                 </div>
                 

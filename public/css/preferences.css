@@ -100,6 +100,12 @@ main {
     align-items: center;
 }
 
+.search-results h1{
+    text-align: center;
+    margin-left: 10px;
+    font-size: 2em;
+}
+
 .display-playlist article{
     display: flex;
     justify-content: space-between;

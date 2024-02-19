@@ -11,7 +11,7 @@ const homePageHandler = async (req, res) => {
         const user = await UserModel.findById(req.session.userId);
 
         if (user.playlists.length === 0) {
-            res.render('index', {func: "logOut()", link: "#", username: user["username"], songName: "Hello", artist: "Please add DJs to begin."});
+            res.render('index', {func: "logOut()", link: "#", username: user["username"], songName: "Hello", artist: "Please create a playlist to begin.x`x`"});
         }
         
         else {

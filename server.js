@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const app = express();
 const bodyParser = require("body-parser");
 
-const uri = "mongodb+srv://swe432:swe432@iteration5.4lxqgj9.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://swe432:swe432@iteration5.4lxqgj9.mongodb.net/test?retryWrites=true&w=majority";
 
 const accountsRoute = require("./routes/AccountsRouter");
 const Preference = require("./routes/PreferencesRouter");
@@ -57,14 +57,11 @@ app.use(songsRoute);
 
 //Logoout route
 app.post("/logout", async (req, res) => {
-
     if (req.session.isAuth) {
         req.session.destroy();
         res.redirect("/");
     }
 })
-
-
 
 let port = 8080;
 app.listen(port, () => {

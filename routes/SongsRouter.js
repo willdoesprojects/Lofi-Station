@@ -12,4 +12,8 @@ router.post("/setcurrplaylist", songsController.setCurrPlaylistHandler);
 
 router.post("/addsong", songsController.addSongHandler);
 
+router.post("/removesong", songsController.removeSongHandler);
+
+router.post("/removeplaylist", songsController.removePlaylistHandler);
+
 module.exports = router;
