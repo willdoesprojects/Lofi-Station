@@ -4,6 +4,7 @@ const mongodbSession = require('connect-mongodb-session')(session);
 const mongoose = require("mongoose");
 const app = express();
 const bodyParser = require("body-parser");
+const GridFSBucket = require('mongodb').GridFSBucket;
 
 const uri = "mongodb+srv://swe432:swe432@iteration5.4lxqgj9.mongodb.net/test?retryWrites=true&w=majority";
 
@@ -12,7 +13,6 @@ const Preference = require("./routes/PreferencesRouter");
 const songsRoute = require("./routes/SongsRouter");
 const musicPlayerRoute = require("./routes/MusicPlayerRouter");
 
-const PlaylistModel = require("./models/Playlists");
 
 const crypto = require('crypto');
 //const { db } = require("./models/Users");
@@ -25,6 +25,8 @@ const store = new mongodbSession({
     uri: uri,
     collection: "Sessions"
 })
+
+
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public/'));

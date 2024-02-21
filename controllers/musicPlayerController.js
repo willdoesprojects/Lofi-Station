@@ -1,21 +1,28 @@
 const UserModel = require("../models/Users");
-const DJModel = require("../models/Playlists");
+const PlaylistsModel = require("../models/Playlists");
 
 const homePageHandler = async (req, res) => {
     if (!req.session.index) {
         req.session.index = 0;
     }
 
-    if (req.session.isAuth) {
+    if (1) {
         
-        const user = await UserModel.findById(req.session.userId);
+        const user = await UserModel.findById('65c568e53350d866ae0ed0c2');
 
         if (user.playlists.length === 0) {
-            res.render('index', {func: "logOut()", link: "#", username: user["username"], songName: "Hello", artist: "Please create a playlist to begin.x`x`"});
+            res.render('index', {func: "logOut()", link: "#", username: user["username"], songName: "Hello", artist: "Please create a playlist to begin."});
         }
         
         else {
-            res.render('index', {func: "logOut()", link: "#", username: user["username"], songName: "song test", artist: "artist test"});
+            if (req.session.playlistId == null) {
+                req.session.playlistId = user.playlists[0]
+            } 
+
+            const playlist = await PlaylistsModel.findById(req.session.playlistId)
+
+            console.log()
+            res.render('index', {func: "logOut()", link: "#", username: user["username"], songName: playlist.songs[req.session.index].name, artist: playlist.songs[req.session.index].artist});
 
         }
         
@@ -27,16 +34,15 @@ const homePageHandler = async (req, res) => {
 
 
 const getSongQueueHandler = async (req, res) => {
-    // const user = await UserModel.findById(req.session.userId);
+    
+    const playlist = await PlaylistsModel.findById(req.session.playlistId)
 
-    const userListener = await DJModel.findById(req.session.playlistId);
-
-    if (userListener == null) {
+    if (playlist == null) {
         res.json(null);
     }
     
     else {
-        res.json({queuedSongs: userListener.songs, index: req.session.index});
+        res.json({queuedSongs: playlist.songs, index: req.session.index});
     }
     
 };
