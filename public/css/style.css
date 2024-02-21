@@ -120,7 +120,7 @@ section .pref-btn:hover {
     
 }
 
-.song-queue h1, .dj-queue h1 {
+.song-queue h1, .playlists h1 {
     color: white;
     font-size: 20px;
     text-align: center;
@@ -138,7 +138,7 @@ div {
     justify-self: center;
 }
 
-.song-queue article, .dj-queue article   {
+.song-queue article, .playlists article   {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -149,16 +149,20 @@ div {
     justify-self: center;
 }
 
-.song-queue article > *, .dj-queue article > * {
+.playlists article {
+    cursor: pointer;
+}
+
+.song-queue article > *, .playlists article > * {
     margin: 6px;
 }
 
-.song-queue img, .dj-queue img {
+.song-queue img, .playlists img {
     height: 41px;
     width: 49px;
 }
 
-.dj-queue {
+.playlists {
     grid-area: 6 / 8 / 9 / 12;
     background-color: #2C1919;
     border-radius: 10px;

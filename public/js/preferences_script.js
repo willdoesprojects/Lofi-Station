@@ -17,20 +17,12 @@ fetchSongData().then((data) => {
 })
 
 async function fetchPlaylistData() {
-    const response = await fetch("/getplaylists");
+    const response = await fetch("/pgetplaylists");
     const data = await response.json();
     return data; 
 }
 
-async function addPlaylist() {
-    await fetch("addplaylist", {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ song: song })
-    })
-}
+
 
 async function currPlaylistPost(id) {
     await fetch("setcurrplaylist", {
@@ -63,9 +55,7 @@ function remove_playlist(id) {
 
 fetchPlaylistData().then((data) => {
     let display_playlist = document.getElementById("display-playlist");
-
     playlists = data.playlists;
-
     if (data.id == null) {
         session_id = playlists[0]._id;
         currPlaylistPost(playlists[0]._id);
@@ -84,7 +74,14 @@ fetchPlaylistData().then((data) => {
         userPlaylistDiv.className = 'user-playlist';
 
         const img = document.createElement('img');
-        img.src = "images/profile_pic.jpg";
+
+        if (playlists[i].imgSrc == null) {
+            img.src = "images/default-playlist.jpg";
+        }
+
+        else {
+            img.src = playlists[i].imgSrc;
+        }
 
         const playlistP = document.createElement('p');
         playlistP.textContent = playlists[i]["name"];
@@ -183,7 +180,6 @@ fetchPlaylistData().then((data) => {
                     </tr>`
                     
                     for (let j = 0; j < playlists[0].songs.length; j++) {
-                        console.log(playlists[0].songs[j]);
                         song_to_table(playlists[0].songs[j], j+1);
                     }
                     
@@ -416,3 +412,51 @@ const openModal = function () {
 openModalBtn.addEventListener("click", openModal);
 
 
+function convertToBase64(e) {
+    let reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+}
+
+function thisFileUpload() {
+    document.getElementById("file-btn").click();
+}
+
+const uploadImg = document.getElementById("upload-btn");
+
+const fileInput = document.getElementById("file-btn");
+const form = document.getElementById("form");
+
+async function addPlaylist(name, base64String) {
+    await fetch("addplaylist", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name: name, image: base64String})
+    });
+
+    window.location.reload();
+}
+
+form.addEventListener("submit", async function(e) {
+    e.preventDefault(); 
+    const name = document.getElementById("playlist-name").value;
+
+    const file = fileInput.files[0]; 
+    if (file) {
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = async function () { 
+            const base64String = reader.result;
+            await addPlaylist(name, base64String); 
+            
+        };
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
+    } 
+    
+    else {
+        await addPlaylist(name, null);    
+    }
+});

@@ -1,22 +1,21 @@
 const UserModel = require("../models/Users");
 const PlaylistModel = require("../models/Playlists");
 const SongsModel = require("../models/Songs");
-const { redirect } = require("express/lib/response");
+
 
 const getSongs = async (req, res) => {
     const songs = await SongsModel.find();
-
     res.json({ songsList: songs });
 }
 
 const createPlaylistHandler = async (req, res) => {
-    const user = await UserModel.findById('65c568e53350d866ae0ed0c2');
-    const { name } = req.body;
-    
-    const newPlaylist = new PlaylistModel({
-        name: name,
-    });
+    const user = await UserModel.findById(req.session.userId);
+    let { name, image } = req.body;
 
+    const newPlaylist = new PlaylistModel({
+        name: name, imgSrc: image
+    });
+    
     await newPlaylist.save();
     
     user.playlists.push(newPlaylist._id);
@@ -28,22 +27,20 @@ const createPlaylistHandler = async (req, res) => {
 
 const getPlaylistsHandler = async (req, res) => {
     let playlists = [];
-    const user = await UserModel.findById('65c568e53350d866ae0ed0c2');
+    const user = await UserModel.findById(req.session.userId);
 
     for (let i = 0; i < user.playlists.length; i++) {
         const playlist = await PlaylistModel.findById(user.playlists[i]);
         playlists.push(playlist)
     }
-    
+
     res.json({ playlists: playlists, id: req.session.currPlaylist });
 }
 
 const setCurrPlaylistHandler = async (req, res) => {
     const { playlist_id } = req.body;
-    
     req.session.currPlaylist = playlist_id;
-
-    res.redirect("./preferences")
+    res.redirect("/preferences")
 }
 
 const addSongHandler = async (req, res) => {
@@ -67,12 +64,13 @@ const removeSongHandler = async (req, res) => {
 
 const removePlaylistHandler = async (req, res) => {
     const { playlist_id } = req.body;
-    const user = await UserModel.findById('65c568e53350d866ae0ed0c2');
+    const user = await UserModel.findById(req.session.userId);
 
     user.playlists = user.playlists.filter(item => item != playlist_id);
 
     await user.save();
     await PlaylistModel.deleteOne( {_id: playlist_id });
-}   
+}
+
 
 module.exports = { removePlaylistHandler, removeSongHandler, addSongHandler, setCurrPlaylistHandler, getPlaylistsHandler, createPlaylistHandler, getSongs };

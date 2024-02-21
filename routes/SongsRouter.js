@@ -6,7 +6,7 @@ router.get("/songslist", songsController.getSongs);
 
 router.post("/addplaylist", songsController.createPlaylistHandler);
 
-router.get("/getplaylists", songsController.getPlaylistsHandler);
+router.get("/pgetplaylists", songsController.getPlaylistsHandler);
 
 router.post("/setcurrplaylist", songsController.setCurrPlaylistHandler);
 

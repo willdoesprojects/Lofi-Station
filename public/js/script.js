@@ -22,6 +22,7 @@ songQueue = null;
 async function fetchQueue() {
     const response = await fetch("/getsongqueue");
     const data = await response.json();
+
     return data;
 }
 
@@ -32,9 +33,69 @@ fetchQueue().then((data) => {
     
 })
 
+async function fetchPlaylists() {
+    const response = await fetch("/getplaylists");
+    const data = await response.json();
+    
+    return data;
+}
+
+fetchPlaylists().then((data) => { 
+    const container = document.getElementById("grid-2");
+
+    playlists = data.playlists;
+    for (let i = 0; i < playlists.length; i++) {
+        const article = document.createElement('article');
+
+        const counterParagraph = document.createElement('p');
+
+        counterParagraph.textContent = i + 1; 
+        article.appendChild(counterParagraph);
+
+        const image = document.createElement('img');
+        if (playlists[i].imgSrc == null) {
+            image.src = "images/default-playlist.jpg"
+        }
+
+        else {
+            image.src = playlists[i].imgSrc; 
+        }
+
+        image.alt = "playlist image"; 
+        article.appendChild(image);
+
+        const nameParagraph = document.createElement('p');
+        nameParagraph.textContent = playlists[i].name;
+        article.appendChild(nameParagraph);
+        
+        article.id = playlists[i]._id;
+
+        article.addEventListener('click', function(){
+            async function currPlaylistPost() {
+                await fetch("setplaylist", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ playlistId: article.id })
+                })
+
+                window.location.reload();
+            }
+
+           currPlaylistPost();
+          
+           
+        });
+
+        container.appendChild(article);
+
+        
+    };
+})
+
 
 function loadSong() {
-    
     if (songQueue == null) {
         playBtn.disabled = true;
         prevBtn.disabled = true;

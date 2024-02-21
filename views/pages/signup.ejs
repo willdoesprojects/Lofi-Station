@@ -9,7 +9,7 @@
         <body>
             <header>
                 <nav class ="navbar">
-                    <a href ="./">Go Back</a>
+                    <a href = "./"><img src = "icons/reply.png" alt = "back-button">
                 </nav>
             </header>
 
@@ -34,6 +34,7 @@
                         <input required type="password" placeholder="Password" name="password"/>
                         <button>Login</button>
                         <p class="message">Not registerd? <a id="signInLink" href="#">Create an account</a></p>
+                        <p id="error-message"><%= error %></p>
                     </form>
                 </section>
             

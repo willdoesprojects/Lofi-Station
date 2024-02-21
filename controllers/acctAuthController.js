@@ -22,11 +22,15 @@ const loginHandler = async (req, res) => {
     const user = await UserModel.findOne({ username });
 
     if (!user) {
-        return res.status(401).json({ message: 'Invalid username or password' });
+        req.session.error = true;
+        res.redirect("/signup")
+        return;
     }
 
     if (password !== user.password) {
-        return res.status(401).json({ message: 'Invalid username or password' });
+        req.session.error = true;
+        res.redirect("/signup")
+        return;
     }
 
     req.session.userId = user._id;

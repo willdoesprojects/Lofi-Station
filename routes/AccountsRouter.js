@@ -3,7 +3,12 @@ const router = express.Router();
 const acctAuthController = require("../controllers/acctAuthController");
 
 router.get("/signup", (req, res) => {
-    res.render('signup');
+    let error = "";
+
+    if (req.session.error) {
+        error = "Invalid username or password.";
+    }
+    res.render('signup', { error : error});
 })
 
 router.post("/signup", acctAuthController.signUpHandler);

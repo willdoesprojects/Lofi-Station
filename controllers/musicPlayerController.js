@@ -6,23 +6,27 @@ const homePageHandler = async (req, res) => {
         req.session.index = 0;
     }
 
-    if (1) {
+    if (req.session.isAuth) {
         
-        const user = await UserModel.findById('65c568e53350d866ae0ed0c2');
+        const user = await UserModel.findById(req.session.userId);
 
         if (user.playlists.length === 0) {
             res.render('index', {func: "logOut()", link: "#", username: user["username"], songName: "Hello", artist: "Please create a playlist to begin."});
         }
         
         else {
-            if (req.session.playlistId == null) {
-                req.session.playlistId = user.playlists[0]
+            if (req.session.currPlaylist == null) {
+                req.session.currPlaylist = user.playlists[0]
             } 
 
-            const playlist = await PlaylistsModel.findById(req.session.playlistId)
+            const playlist = await PlaylistsModel.findById(req.session.currPlaylist);
+            if (playlist.songs.length == 0) {
+                res.render('index', {func: "logOut()", link: "#", username: user["username"], songName: "Hello", artist: "Please add songs to the playlist."});
+            }
 
-            console.log()
-            res.render('index', {func: "logOut()", link: "#", username: user["username"], songName: playlist.songs[req.session.index].name, artist: playlist.songs[req.session.index].artist});
+            else {
+                res.render('index', {func: "logOut()", link: "#", username: user["username"], songName: playlist.songs[req.session.index].name, artist: playlist.songs[req.session.index].artist});
+            }
 
         }
         
@@ -34,8 +38,7 @@ const homePageHandler = async (req, res) => {
 
 
 const getSongQueueHandler = async (req, res) => {
-    
-    const playlist = await PlaylistsModel.findById(req.session.playlistId)
+    const playlist = await PlaylistsModel.findById(req.session.currPlaylist)
 
     if (playlist == null) {
         res.json(null);
@@ -46,6 +49,27 @@ const getSongQueueHandler = async (req, res) => {
     }
     
 };
+
+const getPlaylistsHandler = async (req, res) => {
+    const user = await UserModel.findById(req.session.userId);
+
+    if (user == null) {
+        res.json(null);
+    }
+
+    else {
+        let playlists = []
+        
+        for (let i = 0; i < user.playlists.length; i++) {
+            const playlist = await PlaylistsModel.findById(user.playlists[i]);
+            playlists.push(playlist);
+        }
+
+        res.json({ playlists: playlists });
+    }
+
+    
+}
 
 const getIndexIncrHandler = async (req, res) => {
     const { index } = req.body;
@@ -61,6 +85,11 @@ const getIndexDecrHandler = async (req, res) => {
     
 }
 
-module.exports = { homePageHandler, getSongQueueHandler, getIndexIncrHandler, getIndexDecrHandler };
+const setNewPlaylist = async (req, res) => {
+    const { playlistId } = req.body;
+    req.session.currPlaylist = playlistId;
+    res.redirect("/")
+}
+module.exports = { setNewPlaylist, getPlaylistsHandler, homePageHandler, getSongQueueHandler, getIndexIncrHandler, getIndexDecrHandler };
 
 

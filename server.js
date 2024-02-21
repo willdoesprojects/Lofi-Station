@@ -28,8 +28,10 @@ const store = new mongodbSession({
 
 
 
-app.use(bodyParser.json());
+
+app.use(bodyParser.json({ limit: '50mb' }));
 app.use(express.static(__dirname + '/public/'));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 const sessionSecret = crypto.randomBytes(32).toString('hex');
 

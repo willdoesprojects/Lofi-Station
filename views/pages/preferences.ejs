@@ -24,13 +24,13 @@
                     <h2>New Fun Playlist</h2>
                     <button class="btn-close"><img src="icons/x.png" alt="close out"></button>
                 </div>
-                <form action="/addplaylist" method="POST">
+                <form action="/addplaylist" method="POST" id="form">
                     <div class="upload-image-search">
-                        <!-- <input type="file" id="file" style="display:none;" />
-                        <button class="upload-btn" name="upload-btn" value="Upload" onclick="thisFileUpload();">
+                        <button class="upload-btn" id="upload-btn" name="upload-btn" value="Upload" onclick="event.preventDefault(); thisFileUpload();">
                             <img src="icons/upload.png" alt="upload button">
-                        </button> -->
-                        <input required type="text" placeholder="Enter your fun playlist name!" name="name"/>
+                        </button>
+                        <input type="file" name="image" accept="image/*" id="file-btn" hidden/>
+                        <input required id="playlist-name" type="text" placeholder="Enter your fun playlist name!" name="name"/>
                     </div>
     
                     <div class="save-btn">
@@ -52,16 +52,6 @@
             </section>
 
             <section class="display-playlist" id="display-playlist">
-                <!-- <article>
-                    <div class="user-playlist">
-                        <img src="images/profile_pic.jpg" />
-                        <p>Road Trip 2023</p>
-                    </div>
-
-                    <button class="remove-playlist">
-                        <img class="minus-pic" src="icons/minus.png" alt="remove playlist" />
-                    </button>
-                </article> -->
                 
             </section>
         </aside>
@@ -78,30 +68,6 @@
                           <th>Duration</th>
                           <th class="test"></th>
                         </tr>
-                        
-                        <!-- <tr class="song-row">
-                            <td>1</td>
-                            <td>
-                                <div class="title-container">
-                                    <img src="images/onyourown.jpg"/>
-                                    <div class="title-artist-names">
-                                        <h4>Minute</h4>
-                                        <small>NAV, Metro Boomin, Playboi Carti, Offset</small>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>Perfect Timing</td>
-                            <td>Nov 1, 2017</td>
-                            <td>4:25</td>
-                            <td><button class="remove-song">
-                                <img class="minus-pic" src="icons/minus.png" alt="remove song" />
-                            </button></td>
-                        </tr> -->
-                       
-                        
-                        
-        
-                
                       </table>
                 </article>
             </section>
