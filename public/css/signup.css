@@ -14,8 +14,7 @@ html, body {
     display: block;
 }
 
-.signup,
-.login {
+.signup, .login {
   transition: all 0.5s ease; 
 }
 
@@ -94,7 +93,6 @@ p {
 a {
     text-decoration: none;
     color: #FAF2CF;
-    
 }
 
 h1 {
@@ -105,5 +103,4 @@ h1 {
 
 #error-message {
     color: red;
-    
 }

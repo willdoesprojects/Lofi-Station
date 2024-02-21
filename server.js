@@ -4,7 +4,6 @@ const mongodbSession = require('connect-mongodb-session')(session);
 const mongoose = require("mongoose");
 const app = express();
 const bodyParser = require("body-parser");
-const GridFSBucket = require('mongodb').GridFSBucket;
 
 const uri = "mongodb+srv://swe432:swe432@iteration5.4lxqgj9.mongodb.net/test?retryWrites=true&w=majority";
 
