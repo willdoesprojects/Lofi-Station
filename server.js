@@ -17,7 +17,7 @@ const crypto = require('crypto');
 //const { db } = require("./models/Users");
 
 mongoose.connect(uri).then(() => {
-    console.log("Connected!");
+    console.log("Database Connected!");
 })
 
 const store = new mongodbSession({
