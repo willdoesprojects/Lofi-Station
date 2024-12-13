@@ -43,7 +43,7 @@ header {
 }
 
 main {
-    background-image: url("../images/signupbg.png");
+    background-image: url("/images/signupbg.png");
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;

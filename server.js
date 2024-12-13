@@ -26,8 +26,6 @@ const store = new mongodbSession({
 })
 
 
-
-
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(express.static(__dirname + '/public/'));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
@@ -42,7 +40,7 @@ app.use(session({
 }))
 
 app.set('view engine', 'ejs');
-app.set('views', './views/pages');
+app.set('views', __dirname + '/views/pages');
 
 app.use(express.urlencoded({ extended: true}));
 
